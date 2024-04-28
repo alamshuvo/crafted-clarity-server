@@ -66,6 +66,13 @@ async function run() {
       // // console.log(result);
       res.send(result)
     })
+      //  delete one 
+      app.delete("/craft/id/:id",async(req,res)=>{
+        const id =req.params.id;
+        const quary={_id : new ObjectId(id)}
+        const result= await craftCollection.deleteOne(quary);
+        res.send(result);
+      })
 
 
     // Send a ping to confirm a successful connection
