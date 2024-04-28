@@ -57,7 +57,7 @@ async function run() {
       const result=await craftCollection.insertOne(newCraft)
       res.send(result)
     })
-    // single user data list 
+    // single user data list by email
     app.get(`/craft/email/:email`,async(req,res)=>{
       const emaila=req.params.email;
       console.log(emaila);
