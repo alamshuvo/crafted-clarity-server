@@ -43,7 +43,7 @@ async function run() {
      res.send(result);
      })
   // single craft iteam by id
-  app.get("/craft/:id",async(req,res)=>{
+  app.get("/craft/id/:id",async(req,res)=>{
     const id =req.params.id;
     const quary={_id:new ObjectId(id)};
     const result=await craftCollection.findOne(quary);
@@ -57,6 +57,17 @@ async function run() {
       const result=await craftCollection.insertOne(newCraft)
       res.send(result)
     })
+    // single user data list 
+    app.get(`/craft/email/:email`,async(req,res)=>{
+      const emaila=req.params.email;
+      console.log(emaila);
+      // const quary={email:new ObjectId(emaila)}
+      const result=await craftCollection.find({email:req.params.email}).toArray()
+      // // console.log(result);
+      res.send(result)
+    })
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
