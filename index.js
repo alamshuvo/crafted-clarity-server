@@ -32,7 +32,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
+ 
     const craftCollection=client.db("craftDB").collection("craft")
 
   
@@ -58,11 +58,11 @@ async function run() {
       res.send(result)
     })
     // single user data list by email
-    app.get(`/craft/email/:email`,async(req,res)=>{
-      const emaila=req.params.email;
-      console.log(emaila);
+    app.get(`/craft/uid/:uid`,async(req,res)=>{
+      const uida=req.params.uid;
+      console.log(uida);
       // const quary={email:new ObjectId(emaila)}
-      const result=await craftCollection.find({email:req.params.email}).toArray()
+      const result=await craftCollection.find({uid:req.params.uid}).toArray()
       // // console.log(result);
       res.send(result)
     })
