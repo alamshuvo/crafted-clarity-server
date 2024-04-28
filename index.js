@@ -33,8 +33,18 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
  
-    const craftCollection=client.db("craftDB").collection("craft")
+    const craftCollection=client.db("craftDB").collection("craft");
+    const categoriesCollection=client.db("categories").collection("categoriesCollection");
 
+
+
+
+    // categories all carft
+    app.get("/categories",async(req,res)=>{
+      const cursor=categoriesCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+      })
   
   // all craft
      app.get("/craft",async(req,res)=>{
