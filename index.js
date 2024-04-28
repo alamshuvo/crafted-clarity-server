@@ -58,14 +58,23 @@ async function run() {
       res.send(result)
     })
     // single user data list by email
-    app.get(`/craft/uid/:uid`,async(req,res)=>{
-      const uida=req.params.uid;
-      console.log(uida);
+    app.get(`/craft/email/:email`,async(req,res)=>{
+      const emaila=req.params.email;
+      console.log(emaila);
       // const quary={email:new ObjectId(emaila)}
-      const result=await craftCollection.find({uid:req.params.uid}).toArray()
+      const result=await craftCollection.find({email:req.params.email}).toArray()
       // // console.log(result);
       res.send(result)
     })
+    // app.get(`/craft/updateid/:updateid`,async(req,res)=>{
+    //   const updateida=req.params.updateid;
+    //   console.log(updateida);
+    //   // const quary={email:new ObjectId(emaila)}
+    //   const result=await craftCollection.find({uid:req.params.updateid}).toArray()
+    //   // // console.log(result);
+    //   res.send(result)
+    // })
+
       //  delete one 
       app.delete("/craft/id/:id",async(req,res)=>{
         const id =req.params.id;
@@ -74,7 +83,7 @@ async function run() {
         res.send(result);
       })
 
-
+  
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
