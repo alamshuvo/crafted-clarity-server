@@ -45,6 +45,17 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
       })
+      // craft find by subcategory name
+      app.get(`/craft/categories/:categories`,async(req,res)=>{
+        // const categoriesa=;
+        console.log(req.params.categories);
+        // const quary={email:new ObjectId(emaila)}
+        const result=await craftCollection.find({selectCategory:req.params.categories}).toArray();
+        // const cursor=craftCollection.find();
+        // const result=await cursor.toArray();
+        console.log(result);
+        res.send(result)
+      })
   
   // all craft
      app.get("/craft",async(req,res)=>{
@@ -94,22 +105,14 @@ async function run() {
       res.send(result)
     })
     // single user data list by email
-    app.get(`/craft/email/:email`,async(req,res)=>{
-      const emaila=req.params.email;
-      console.log(emaila);
+    app.get(`/craft/uid/:uid`,async(req,res)=>{
+      const uida=req.params.uid;
+      console.log(uida);
       // const quary={email:new ObjectId(emaila)}
-      const result=await craftCollection.find({email:req.params.email}).toArray()
-      // // console.log(result);
+      const result=await craftCollection.find({uid:req.params.uid}).toArray();
       res.send(result)
     })
-    // app.get(`/craft/updateid/:updateid`,async(req,res)=>{
-    //   const updateida=req.params.updateid;
-    //   console.log(updateida);
-    //   // const quary={email:new ObjectId(emaila)}
-    //   const result=await craftCollection.find({uid:req.params.updateid}).toArray()
-    //   // // console.log(result);
-    //   res.send(result)
-    // })
+  
 
       //  delete one 
       app.delete("/craft/id/:id",async(req,res)=>{
